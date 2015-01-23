@@ -1,0 +1,21 @@
+﻿<select class="form-control" ng-model="chosenTrack" ng-options="track.Name for track in tracks">
+	<option value="" ng-bind="dropdownMessage">Please wait for sessions to load...</option>
+</select>
+<div class="row">
+	<div ng-repeat="track in trackSessions | nonBlankFilter:chosenTrack">
+		<!--<h3>{{track.Name}}</h3>-->
+		<div class="col-xs-12 col-lg-6" ng-repeat="session in track.sessions">
+			<div class="btn-group-vertical btn-block">
+				<button class="btn btn-default overflow" ng-click="session.isExpanded = !session.isExpanded">
+					{{session.Start | date:'shortTime'}} - {{session.Title}}
+				</button>
+			</div>
+			<div collapse="!session.isExpanded" class="list-group" style="border-radius: 0px 0px 4px 4px">
+				<session-detail data="session"></session-detail>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

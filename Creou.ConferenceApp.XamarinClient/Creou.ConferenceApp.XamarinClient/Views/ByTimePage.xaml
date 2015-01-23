@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					x:Class="Creou.ConferenceApp.XamarinClient.Views.ByTimePage"
+					Padding="20"
+					IsBusy="{Binding IsBusy}"
+					BindingContext="{x:Static confApp:App.ByTimePageViewModel}">
+
+	<StackLayout Spacing="20">
+
+		<Frame Padding="8"
+					 BackgroundColor="White">
+			<Frame.HeightRequest>
+				<OnPlatform x:TypeArguments="x:Double"
+										iOS="45"
+										Android="45"
+										WinPhone="60" />
+			</Frame.HeightRequest>
+			<Image Source="LogoRectangle.png" />
+		</Frame>
+
+		<StackLayout Orientation="Horizontal">
+
+		<!--<StackLayout Orientation="Horizontal"
+								 HeightRequest="60">-->
+				
+			<!--<Image Source="ArrowLeft.png"
+						 BackgroundColor="White"
+						 Aspect="AspectFit">
+				<Image.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding PressLeft}"/>
+				</Image.GestureRecognizers>
+			</Image>-->
+
+			<Button x:Name="btnEarlier"
+							Text="Earlier"
+							IsVisible="False"
+							Command="{Binding PressLeft}" />
+			
+			<Label Text="{Binding SelectedTimeString}"
+						 HorizontalOptions = "LayoutOptions.CenterAndExpand"
+						 VerticalOptions = "LayoutOptions.CenterAndExpand"
+						 FontSize="{Binding FontExtraLarge}" />
+
+			<Button x:Name="btnLater"
+							Text="Later"
+							IsVisible="False"
+							Command="{Binding PressRight}" />
+
+			<!--<Image Source="ArrowRight.png"
+						 BackgroundColor="White"
+						 Aspect="AspectFit">
+				<Image.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding PressRight}"/>
+				</Image.GestureRecognizers>
+			</Image>-->
+			
+		</StackLayout>
+
+		<ListView x:Name="lstSessions"
+							ItemsSource="{Binding GroupedSessions}"
+							IsGroupingEnabled="True"
+							GroupDisplayBinding="{Binding Key}"
+							GroupShortNameBinding="{Binding ShortKey}"
+							HasUnevenRows="True">
+			
+			<ListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Padding="0,6,0,6">
+							<StackLayout VerticalOptions="FillAndExpand">
+								<StackLayout.BackgroundColor>
+									<OnPlatform x:TypeArguments="Color"
+															iOS="Default"
+															Android="Default"
+															WinPhone="Accent" />
+								</StackLayout.BackgroundColor>
+								<StackLayout.Padding>
+									<OnPlatform x:TypeArguments="Thickness"
+															iOS="0,0,0,0"
+															Android="0,0,0,0"
+															WinPhone="6,3,6,3" />
+								</StackLayout.Padding>
+								<Label Text="{Binding Key}"
+											 TextColor="White"
+											 VerticalOptions="Center"/>
+							</StackLayout>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.GroupHeaderTemplate>
+			
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout Spacing="5"
+													 Padding="0,0,0,20">
+								<Label Text="{Binding SessionTitleShort}"
+											 FontSize="{Binding FontMedium}">
+									<Label.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding SessionSelected}"
+																					CommandParameter="{Binding}" />
+									</Label.GestureRecognizers>
+								</Label>
+								<Label Text="{Binding TimesString}"
+											 FontSize="{Binding FontSmall}"
+											 TextColor="Accent" >
+									<Label.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding SessionSelected}"
+																					CommandParameter="{Binding}" />
+									</Label.GestureRecognizers>
+								</Label>
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+			
+		</ListView>
+		
+	</StackLayout>
+	
+</BaseView>

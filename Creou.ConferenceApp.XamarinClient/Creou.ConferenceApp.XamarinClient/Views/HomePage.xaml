@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					x:Class="Creou.ConferenceApp.XamarinClient.Views.HomePage"
+					Padding="20"
+					IsBusy="{Binding IsBusy}"
+					BindingContext="{x:Static confApp:App.HomePageViewModel}">
+
+	<StackLayout Padding="0,40,0,0"
+							 Spacing="40"
+							 VerticalOptions="LayoutOptions.Center">
+
+		<Frame>
+			<Label Text="Loading data..."
+						 FontSize="{Binding FontSmall}"
+						 HorizontalOptions="LayoutOptions.Center"
+						 IsVisible="{Binding IsBusy}"/>
+		</Frame>
+
+		<Frame Padding="10"
+					 BackgroundColor="White">
+			<Image Source="LogoRectangle.png" />
+		</Frame>
+
+		<StackLayout Spacing="10">
+		
+			<Button Text="View Sessions By Time"
+							FontSize="{Binding FontLarge}"
+							HorizontalOptions="LayoutOptions.Center"
+							Command="{Binding PressByTime}"
+							IsEnabled="{Binding DataLoaded}"/>
+
+			<Button Text="View Sessions By Track"
+							FontSize="{Binding FontLarge}"
+							HorizontalOptions="LayoutOptions.Center"
+							Command="{Binding PressByTrack}"
+							IsEnabled="{Binding DataLoaded}"/>
+
+			<BoxView HeightRequest="5" />
+
+			<BoxView Color="Gray"
+							 HeightRequest="2"
+							 Opacity="0.5" />
+
+			<BoxView HeightRequest="5" />
+
+			<Button Text="Event Feedback"
+							FontSize="{Binding FontLarge}"
+							HorizontalOptions="LayoutOptions.Center"
+							VerticalOptions="LayoutOptions.EndAndExpand"
+							Command="{Binding PressEventFeedback}"
+							IsEnabled="{Binding DataLoaded}"/>
+
+		</StackLayout>
+		
+	</StackLayout>
+	
+</BaseView>

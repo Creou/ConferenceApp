@@ -1,0 +1,25 @@
+﻿@model Creou.ConferenceApp.Server.Models.Session
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="panel panel-default">
+	<button class="btn btn-default btn-block overflow" data-toggle="collapse" data-parent="#trackAccordion" href="@string.Concat('#', Model.Id)">
+		@string.Format("{0:hh:mm tt}", Model.Start) - @Html.DisplayFor(m => Model.Title)
+	</button>
+	<div class="panel-collapse collapse list-group" style="border-radius: 0 0 4px 4px" id="@Model.Id">
+		<div class="list-group-item" style="margin-bottom: 0; border-radius: inherit">
+			<span class="pull-left">@Html.DisplayFor(m => Model.Speaker.Name)</span>
+			<span class="pull-right">@Html.DisplayFor(m => Model.Room.RoomName)</span>
+			<div class="clearfix"></div>
+			<span class="pull-right">@string.Format("{0:hh:mm tt}", Model.Start) - @string.Format("{0:hh:mm tt}", Model.End)</span>
+			<div class="clearfix"></div>
+			<div class="text-left margin-top-10px">@Html.DisplayFor(m => Model.Description)</div>
+			<input type="submit" class="btn btn-default margin-top-10px center-block" value="Rate this session"/>
+		</div>
+	</div>
+</div>
+</body>
+</html>

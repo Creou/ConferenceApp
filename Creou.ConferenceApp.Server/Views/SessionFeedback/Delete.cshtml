@@ -1,0 +1,88 @@
+﻿@model Creou.ConferenceApp.Server.Models.FeedbackReport
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FeedbackReport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RatePresentation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatePresentation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateSlides)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateSlides)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateDemos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateDemos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LikeComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LikeComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DislikeComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DislikeComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneralComments)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

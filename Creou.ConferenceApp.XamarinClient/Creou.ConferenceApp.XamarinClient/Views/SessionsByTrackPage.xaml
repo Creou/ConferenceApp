@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						 xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+						 xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					   x:Class="Creou.ConferenceApp.XamarinClient.Views.SessionsByTrackPage"
+						 Padding="20"
+						 IsBusy="{Binding IsBusy}">
+
+	<BaseView.BindingContext>
+		<viewmodels:SessionsByTrackViewModel />
+	</BaseView.BindingContext>
+
+	<StackLayout Spacing="50">
+
+		<Label Text="CONFERENCE APP"
+					 BackgroundColor="Color.Accent"
+					 Font="18" />
+
+		<Label Text="{Binding Heading}"
+					 Font="24" />
+
+		<ListView ItemsSource="{Binding Sessions}"
+							RowHeight="130">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout Spacing="7">
+								<Label Text="{Binding SessionTitleUpper}"
+											 Font="22" />
+								<Label Text="{Binding Session.Description}"
+											 Font="18" />
+								<Label Text="{Binding TimesAndRoomString}"
+											 Font="18" />
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+	</StackLayout>
+</BaseView>

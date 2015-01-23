@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:custom="clr-namespace:Creou.ConferenceApp.XamarinClient.CustomControls;assembly=Creou.ConferenceApp.XamarinClient"
+					x:Class="Creou.ConferenceApp.XamarinClient.Views.SessionFeedbackPage"
+					Padding="20"
+					IsBusy="{Binding IsBusy}"
+					BindingContext="{x:Static confApp:App.SessionFeedbackPageViewModel}">
+
+	<ScrollView Orientation="Vertical"
+							VerticalOptions = "LayoutOptions.StartAndExpand">
+
+		<StackLayout Spacing="20">
+
+			<Label Text="Session Feedback"
+						 FontSize="{Binding FontExtraLarge}" />
+			
+			<Label Text="{Binding Session.SessionTitleUpper}"
+						 FontSize="{Binding FontMedium}" />
+
+			<StackLayout Spacing="4"
+									 HorizontalOptions = "LayoutOptions.StartAndExpand"
+									 VerticalOptions = "LayoutOptions.StartAndExpand">
+				<Label Text="{Binding Session.Session.Speaker.Name}"
+							 FontSize="{Binding FontSmall}"
+							 TextColor="Accent" />
+				<Label Text="{Binding Session.Session.Room.RoomName}"
+							 FontSize="{Binding FontSmall}"
+							 TextColor="Accent" />
+				<Label Text="{Binding Session.TimesString}"
+							 FontSize="{Binding FontSmall}"
+							 TextColor="Accent" />
+			</StackLayout>
+
+			<Entry Text="{Binding UserName}"
+						 Placeholder="Name (optional)"/>
+			
+			<StackLayout Spacing="4">
+				
+				<!--*******************************-->
+
+				<Label Text="Was the presentation as described in the session abstract?"
+							 FontSize="{Binding FontSmall}" />
+
+				<Label Text="{Binding RatingPresentationString}"
+							 HorizontalOptions = "LayoutOptions.End"
+							 FontSize="{Binding FontExtraLarge}"
+							 WidthRequest="50" />
+
+				<custom:Rating Value="{Binding RatingPresentation, Mode=TwoWay}"/>
+				<custom:RatingPadding />
+
+				<!--*******************************-->
+				
+				<BoxView HeightRequest="5" />
+				
+				<BoxView Color="Gray"
+								 HeightRequest="1"
+								 Opacity="0.5" />
+				
+				<BoxView HeightRequest="5" />
+				
+				<!--*******************************-->
+
+				<Label Text="How would you rate each aspect of the session?"
+							 FontSize="{Binding FontSmall}">
+					<Label.HeightRequest>
+						<OnPlatform x:TypeArguments="x:Double"
+												iOS="20"
+												Android="20"
+												WinPhone="50" />
+					</Label.HeightRequest>
+				</Label>
+				
+				<!--*******************************-->
+
+				<StackLayout Orientation="Horizontal">
+
+					<Label Text="Content"
+								 HorizontalOptions = "LayoutOptions.StartAndExpand"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontSmall}" />
+
+					<Label Text="{Binding RatingContentString}"
+								 HorizontalOptions = "LayoutOptions.End"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontExtraLarge}"
+								 WidthRequest="50" />
+										
+				</StackLayout>
+
+				<custom:Rating Value="{Binding RatingContent, Mode=TwoWay}" />
+				<custom:RatingPadding />
+								
+				<!--*******************************-->
+
+				<StackLayout Orientation="Horizontal">
+
+					<Label Text="Delivery"
+								 HorizontalOptions = "LayoutOptions.StartAndExpand"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontSmall}" />
+
+					<Label Text="{Binding RatingDeliveryString}"
+								 HorizontalOptions = "LayoutOptions.End"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontExtraLarge}"
+								 WidthRequest="50" />
+
+				</StackLayout>
+
+				<custom:Rating Value="{Binding RatingDelivery, Mode=TwoWay}" />
+				<custom:RatingPadding />
+
+				<!--*******************************-->
+
+				<StackLayout Orientation="Horizontal">
+					
+					<Label Text="Slides"
+								 HorizontalOptions = "LayoutOptions.StartAndExpand"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontSmall}" />
+
+					<Label Text="{Binding RatingSlidesString}"
+								 HorizontalOptions = "LayoutOptions.End"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontExtraLarge}"
+								 WidthRequest="50" />
+
+				</StackLayout>
+
+				<custom:Rating Value="{Binding RatingSlides, Mode=TwoWay}" />
+				<custom:RatingPadding />
+
+				<!--*******************************-->
+
+				<StackLayout Orientation="Horizontal">
+						
+					<Label Text="Demos"
+								 HorizontalOptions = "LayoutOptions.StartAndExpand"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontSmall}" />
+
+					<Label Text="{Binding RatingDemosString}"
+								 HorizontalOptions = "LayoutOptions.End"
+								 VerticalOptions = "LayoutOptions.Center"
+								 FontSize="{Binding FontExtraLarge}"
+								 WidthRequest="50" />
+
+				</StackLayout>
+
+				<custom:Rating Value="{Binding RatingDemos, Mode=TwoWay}" />
+				<custom:RatingPadding />
+				
+				<!--*******************************-->
+				
+				<BoxView HeightRequest="5" />
+				
+				<BoxView Color="Gray"
+								 HeightRequest="1"
+								 Opacity="0.5" />
+				
+				<BoxView HeightRequest="5" />
+				
+				<!--*******************************-->
+
+				<Label Text="What did you like?"
+							 FontSize="{Binding FontSmall}" />
+				
+				<Editor Text="{Binding LikeComments}"
+								VerticalOptions = "LayoutOptions.FillAndExpand" >
+					<Editor.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+												iOS="Default"
+												Android="Default"
+												WinPhone="White" />
+					</Editor.BackgroundColor>
+					<Editor.HeightRequest>
+						<OnPlatform x:TypeArguments="x:Double"
+												iOS="110"
+												Android="110"
+												WinPhone="175" />
+					</Editor.HeightRequest>
+				</Editor>
+
+				<BoxView HeightRequest="10" />
+
+				<!--*******************************-->
+
+				<Label Text="What didn't you like?"
+							 FontSize="{Binding FontSmall}" />
+
+				<Editor Text="{Binding DislikeComments}"
+								VerticalOptions = "LayoutOptions.FillAndExpand" >
+					<Editor.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+												iOS="Default"
+												Android="Default"
+												WinPhone="White" />
+					</Editor.BackgroundColor>
+					<Editor.HeightRequest>
+						<OnPlatform x:TypeArguments="x:Double"
+												iOS="110"
+												Android="110"
+												WinPhone="175" />
+					</Editor.HeightRequest>
+				</Editor>
+
+				<BoxView HeightRequest="10" />
+
+				<!--*******************************-->
+
+				<Label Text="Any other comments?"
+							 FontSize="{Binding FontSmall}" />
+
+				<Editor Text="{Binding GeneralComments}"
+								VerticalOptions = "LayoutOptions.FillAndExpand" >
+					<Editor.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+												iOS="Default"
+												Android="Default"
+												WinPhone="White" />
+					</Editor.BackgroundColor>
+					<Editor.HeightRequest>
+						<OnPlatform x:TypeArguments="x:Double"
+												iOS="110"
+												Android="110"
+												WinPhone="175" />
+					</Editor.HeightRequest>
+				</Editor>
+
+				<BoxView HeightRequest="5" />
+
+				<!--*******************************-->
+
+				<StackLayout Orientation="Horizontal">
+
+					<Button Text="Submit"
+									HorizontalOptions = "LayoutOptions.EndAndExpand"
+									Command="{Binding SubmitPressed}" />
+
+					<Button Text="Cancel"
+									HorizontalOptions = "LayoutOptions.End"
+									Command="{Binding CancelPressed}" />
+
+				</StackLayout>
+				
+			</StackLayout>
+			
+		</StackLayout>
+
+	</ScrollView>
+	
+</BaseView>

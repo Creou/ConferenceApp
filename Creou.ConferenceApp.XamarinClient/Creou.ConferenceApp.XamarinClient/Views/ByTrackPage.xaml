@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:custom="clr-namespace:Creou.ConferenceApp.XamarinClient.CustomControls;assembly=Creou.ConferenceApp.XamarinClient"
+					x:Class="Creou.ConferenceApp.XamarinClient.Views.ByTrackPage"
+					Padding="20"
+					IsBusy="{Binding IsBusy}"
+					BindingContext="{x:Static confApp:App.ByTrackPageViewModel}">
+
+	<StackLayout Spacing="20">
+
+		<Frame Padding="8"
+					 BackgroundColor="White">
+			<Frame.HeightRequest>
+				<OnPlatform x:TypeArguments="x:Double"
+										iOS="45"
+										Android="45"
+										WinPhone="60" />
+			</Frame.HeightRequest>
+			<Image Source="LogoRectangle.png" />
+		</Frame>
+
+		<custom:BindablePicker x:Name="pkrTracks"
+													 ItemsSource="{Binding AvailableTracks}"
+													 SelectedItem="{Binding SelectedTrack}"
+													 SelectedIndex="{Binding SelectedTrackIndex, Mode=TwoWay}"
+													 IsVisible="False"/>
+
+		<ListView x:Name="lstSessions"
+							ItemsSource="{Binding Sessions}">
+			<ListView.RowHeight>
+				<OnPlatform x:TypeArguments="x:Int32"
+										iOS="68"
+										Android="68"
+										WinPhone="90" />
+			</ListView.RowHeight>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout Spacing="5"
+													 Padding="0,10,0,0">
+								<Label Text="{Binding SessionTitleShort}"
+											 FontSize="{Binding FontMedium}">
+									<Label.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding SessionSelected}"
+																					CommandParameter="{Binding}" />
+									</Label.GestureRecognizers>
+								</Label>
+								<Label Text="{Binding TimesString}"
+											 FontSize="{Binding FontSmall}"
+											 TextColor="Accent">
+									<Label.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding SessionSelected}"
+																					CommandParameter="{Binding}" />
+									</Label.GestureRecognizers>
+								</Label>
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+	</StackLayout>		
+		
+</BaseView>

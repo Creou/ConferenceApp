@@ -1,0 +1,10 @@
+﻿
+<div class="list-group-item" style="margin-bottom: 0px; border-radius: inherit">
+	<span class="pull-left">{{session.Speaker.Name}}</span>
+	<span class="pull-right">{{session.Room.RoomName}}</span>
+	<div class="clearfix"></div>
+	<span class="pull-right">{{session.Start | date:'shortTime'}} - {{session.End | date:'shortTime'}}</span>
+	<div class="clearfix"></div>
+	<div class="text-left margin-top-10px">{{session.Description}}</div>
+	<button class="btn btn-default margin-top-10px center-block" ng-click="Attended()">Rate this session</button>
+</div>

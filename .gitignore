@@ -1,0 +1,24 @@
+# Binaries #
+*.exe
+*.dll
+
+# User config #
+*.suo
+*.user
+
+.gitignore~
+*.swp
+
+bin/
+obj/
+*.cachefile
+
+packages/
+
+CreouDotCom.Publish.xml
+
+# Word temp files #
+~*
+
+# Windows thumbnail cache files #
+Thumbs.db

@@ -1,0 +1,24 @@
+﻿@model Creou.ConferenceApp.Server.ViewModels.ByTrack
+
+@{
+	ViewBag.Title = "By Track";
+}
+
+@*Html.LabelFor(m => m.SelectedTrackId);*@
+@using (Html.BeginForm())
+{
+	@Html.DropDownListFor(m => m.SelectedTrackId, Model.Tracks)
+	<input type="submit" value="Select" />
+}
+
+@using (Html.BeginForm("ForSession", "SessionFeedback", FormMethod.Post))
+{
+	<div class="col-xs-12 col-lg-6 panel-group" id="trackAccordion">
+		@foreach (var session in Model.SessionsForTrack)
+		{
+			@Html.HiddenFor(m => session.Id)
+			@Html.Partial("_Session", session)
+		}
+	</div>
+}
+

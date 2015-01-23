@@ -1,0 +1,32 @@
+﻿<h2>All</h2>
+
+<a href="#/home">Home</a>
+
+<div class="row">
+	<div class="col-sm-4" ng-repeat="session in sessions">
+		<div class="btn-group-vertical btn-block">
+			<button class="btn btn-default overflow" ng-click="session.isExpanded = !session.isExpanded">
+				{{session.Start | date:'shortTime'}} - {{session.Title}}
+			</button>
+		</div>
+		<div collapse="!session.isExpanded">
+			<div class="list-group" style="margin-bottom: 0px;">
+				<span class="list-group-item col-xs-6 col-sm-2">Start: {{session.Start | date:'shortTime'}}</span>
+				<span class="list-group-item col-xs-6 col-sm-2">End: {{session.End | date:'shortTime'}}</span>
+				<span class="list-group-item col-xs-6 col-sm-2">Room: {{session.Room.RoomName}}</span>
+				<span class="list-group-item col-xs-6 col-sm-3">Track: {{session.Track.Name}}</span>
+				<span class="list-group-item col-xs-12 col-sm-3">Speaker: {{session.Speaker.Name}}</span>
+				<span class="list-group-item col-xs-12">{{session.Description}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-show="loading">
+	<button class="btn btn-lg btn-warning disabled">
+		<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+	</button>
+</div>
+<a href="#/home">Home</a>
+
+
+

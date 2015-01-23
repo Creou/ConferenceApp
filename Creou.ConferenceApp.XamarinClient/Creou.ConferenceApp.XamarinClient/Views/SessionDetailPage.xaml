@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms"
+					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					xmlns:viewmodels="clr-namespace:Creou.ConferenceApp.XamarinClient.ViewModels;assembly=Creou.ConferenceApp.XamarinClient"
+					xmlns:confApp="clr-namespace:Creou.ConferenceApp.XamarinClient;assembly=Creou.ConferenceApp.XamarinClient"
+					x:Class="Creou.ConferenceApp.XamarinClient.Views.SessionDetailPage"
+					Padding="20"
+					IsBusy="{Binding IsBusy}"
+					BindingContext="{x:Static confApp:App.SessionDetailPageViewModel}">
+
+	<StackLayout Spacing="30">
+
+		<ScrollView x:Name="scrlSession"
+								Orientation="Vertical"
+								VerticalOptions = "LayoutOptions.StartAndExpand">
+		
+			<StackLayout Spacing="30">
+
+				<Label Text="{Binding Session.SessionTitleUpper}"
+							 FontSize="{Binding FontMedium}" />
+
+				<Label Text="{Binding Session.Session.Description}"
+							 FontSize="{Binding FontSmall}"/>
+		
+			</StackLayout>
+
+		</ScrollView>
+
+		<StackLayout Orientation="Horizontal"
+								VerticalOptions = "LayoutOptions.End">
+			
+			<StackLayout Spacing="4"
+										HorizontalOptions = "LayoutOptions.StartAndExpand"
+										VerticalOptions = "LayoutOptions.StartAndExpand">
+				<Label Text="{Binding Session.Session.Speaker.Name}"
+								FontSize="{Binding FontSmall}"
+								TextColor="Accent" />
+				<Label Text="{Binding Session.Session.Room.RoomName}"
+								FontSize="{Binding FontSmall}"
+								TextColor="Accent" />
+				<Label Text="{Binding Session.TimesString}"
+								FontSize="{Binding FontSmall}"
+								TextColor="Accent" />
+			</StackLayout>
+
+			<Button Text="Rate This Session"
+							HorizontalOptions = "LayoutOptions.End"
+							VerticalOptions = "LayoutOptions.End"
+							IsEnabled="{Binding Session.SessionFinished}"
+							Command="{Binding PressRateSession}"/>
+
+		</StackLayout>
+
+	</StackLayout>
+
+</BaseView>

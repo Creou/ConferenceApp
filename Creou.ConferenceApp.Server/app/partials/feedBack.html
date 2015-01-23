@@ -1,0 +1,53 @@
+﻿<h2>Session Feedback</h2>
+<div style="margin-bottom: 0px; border-radius: inherit; max-width:800px" ng-disabled="formDisable">
+	<span class="pull-left">{{session.Title}}</span>
+	<span class="pull-right">{{session.Room.RoomName}}</span>
+	<div class="clearfix"></div>
+	<span class="pull-left">{{session.Speaker.Name}}</span>
+	<span class="pull-right">{{session.Start | date:'shortTime'}} - {{session.End | date:'shortTime'}}</span>
+	<div class="clearfix"></div>
+	<div class="form-group margin-top-10px">
+		<label>Name:</label>
+		 <input class="form-control" ng-disabled="formDisable" ng-model="userName"></input>
+	</div>
+	<div class="form-group margin-top-10px">
+		<label>Was the presentation as described in the session abstract?</label>
+		<div class="clearfix"></div>
+		<rating required min="1" ng-model="ratePresentation" readonly="formDisable"></rating>
+		<div class="clearfix"></div>
+	</div>
+	<div class="form-group margin-top-10px">
+		<label>How would you rate each aspect of the session?</label>
+	</div>
+	<div class="row form-group margin-top-10px">
+		<label class="star col-xs-3">Content</label>
+		<rating class="col-xs-9" ng-model="rateContent" readonly="formDisable"></rating>
+	</div>
+	<div class="row form-group margin-top-10px">
+		<label class="star col-xs-3">Delivery</label>
+		<rating class="col-xs-9" ng-model="rateDelivery" readonly="formDisable"></rating>
+	</div>
+	<div class="row form-group margin-top-10px">
+		<label class="star col-xs-3">Slides</label>
+		<rating class="col-xs-9" ng-model="rateSlides" readonly="formDisable"></rating>
+	</div>
+	<div class="row form-group margin-top-10px">
+		<label class="star col-xs-3">Demos</label>
+		<rating class="col-xs-9" ng-model="rateDemos" readonly="formDisable"></rating>
+	</div>
+	<div class="clearfix"></div>
+	<div class="form-group">
+		<label>What did you like?</label>
+		<textarea elastic style="overflow: hidden;" class="form-control" ng-model="commentLiked" ng-disabled="formDisable"></textarea>
+	</div>
+	<div class="form-group">
+		<label>What didn't you like?</label>
+		<textarea elastic style="overflow: hidden;" class="form-control" ng-model="commentDisliked" ng-disabled="formDisable"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="commentsGeneral">Any other comments?</label>
+		<textarea elastic style="overflow: hidden;" ng-model="commentsGeneral" class="form-control" ng-disabled="formDisable"></textarea>
+	</div>
+	<button class="btn btn-default pull-left" ng-click="submit()" ng-disabled="formDisable">{{buttonText}}</button>
+	<button class="btn btn-default pull-right" ng-click="back()">Back</button>
+</div>
